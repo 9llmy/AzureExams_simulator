@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react";
 // Vercel, Netlify, and Azure Static Web Apps serve from "/" — no change needed.
 export default defineConfig({
   plugins: [react()],
-  base: process.env.VITE_BASE || "/",
+  base: process.env.VITE_BASE || "/AzureExams_simulator/",
 });
