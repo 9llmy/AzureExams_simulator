@@ -24,7 +24,7 @@
 
 Azure Exams Simulator is a single-page application that recreates the real Microsoft certification testing experience: a countdown timer, a question navigator with flagging, strict item scoring, and a full performance dashboard with per-question explanations.
 
-It ships with a **complete AI-900 bank (82 verified questions)** and an **AZ-900 preview bank**, and its plugin architecture means any Azure certification — DP-900, SC-900, AZ-104 — can be added with **one bank file and one registry entry**. No engine changes required.
+It ships with a **complete AI-900 bank (over 100 verified questions)** and an **AZ-900 preview bank**, and its plugin architecture means any Azure certification — DP-900, SC-900, AZ-104 — can be added with **one bank file and one registry entry**. No engine changes required.
 
 ---
 
@@ -47,7 +47,7 @@ It ships with a **complete AI-900 bank (82 verified questions)** and an **AZ-900
 | Metric | Value |
 | --- | --- |
 | 🎓 Certifications | **2** (AI-900 full · AZ-900 preview) |
-| ❓ Questions in Banks | **94** |
+| ❓ Questions in Banks | **131** |
 | 🧩 Question Types | **3** |
 | 📚 AI-900 Skill Domains | **5** |
 | ⏱️ AI-900 Exam | **60 questions / 80 min** |
