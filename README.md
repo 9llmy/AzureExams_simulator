@@ -1,83 +1,151 @@
-# Azure Certification Exam Simulator
+<div align="center">
 
-A multi-certification exam simulator built with React, Vite, Tailwind CSS, and
-lucide-react. Ships with a full AI-900 bank (82 verified questions) and an
-AZ-900 preview bank, and is designed so any Azure certification can be added
-with one bank file and one registry entry.
+# ☁️ Azure Exams Simulator
 
-## Develop
+### Professional Certification Testing Engine for Microsoft Azure Exams
+
+<!-- Uncomment after enabling GitHub Pages (Settings → Pages → Source: GitHub Actions):
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Try_It-brightgreen?style=for-the-badge)](https://9llmy.github.io/AzureExams_simulator/)
+-->
+
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](.github/workflows/deploy-pages.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+**A Pearson VUE–style exam simulator for Azure certifications — timed, scored, and fully reviewable**
+
+</div>
+
+---
+
+## 🌟 Overview
+
+Azure Exams Simulator is a single-page application that recreates the real Microsoft certification testing experience: a countdown timer, a question navigator with flagging, strict item scoring, and a full performance dashboard with per-question explanations.
+
+It ships with a **complete AI-900 bank (82 verified questions)** and an **AZ-900 preview bank**, and its plugin architecture means any Azure certification — DP-900, SC-900, AZ-104 — can be added with **one bank file and one registry entry**. No engine changes required.
+
+---
+
+## ✨ Features
+
+- ⏱️ **Real Exam Timer** — HH:MM:SS countdown with amber/red warnings, pause mode, and auto-submit on expiry
+- 🧩 **Three Question Types** — Single choice, multiple choice (exact-count validation), and Yes/No statement matrices
+- 🗺️ **Question Navigator** — Jump anywhere; color-coded answered/unanswered states with flag-for-review markers
+- 📋 **Pre-Submit Review** — Full overview of unanswered and flagged questions before final submission
+- 🎯 **Authentic Scoring** — All-or-nothing item scoring scaled to 1000, passing at 700, just like the real exam
+- 📊 **Performance Dashboard** — Pass/fail ring, time taken, and a per-skill-domain breakdown
+- 📖 **Full Answer Review** — Every question with your answer vs. the correct one, plus a written explanation
+- 🔀 **Random Draws** — Each attempt pulls a fresh random set from the bank, so retakes never repeat
+- 🧱 **Multi-Certification Architecture** — Exam picker driven by a registry; preview mode for growing banks
+
+---
+
+## 📊 Project Stats
+
+| Metric | Value |
+| --- | --- |
+| 🎓 Certifications | **2** (AI-900 full · AZ-900 preview) |
+| ❓ Questions in Banks | **94** |
+| 🧩 Question Types | **3** |
+| 📚 AI-900 Skill Domains | **5** |
+| ⏱️ AI-900 Exam | **60 questions / 80 min** |
+| 🏆 Passing Score | **700 / 1000** |
+
+---
+
+## 🏗️ Architecture
+
+Strict one-way dependency flow — UI never touches question banks directly:
+
+```
+components (screens, widgets)
+        │
+        ▼
+hooks (useExamSession, useCountdown)
+        │
+        ▼
+logic (grading, shuffle, time)   data (examRepository)
+                                        │
+                                        ▼
+                              config (examRegistry)
+                                        │
+                                        ▼
+                            banks (ai900.js, az900.js)
+```
+
+Swapping the in-memory banks for an API or database later means changing **one file**: `src/data/examRepository.js`.
+
+---
+
+## 🛠️ Tech Stack
+
+- **React 18** — UI with hooks-based state management
+- **Vite 5** — Dev server and production builds
+- **Tailwind CSS 3** — Utility-first styling
+- **lucide-react** — Icon library
+- **GitHub Actions** — CI workflow for automatic GitHub Pages deployment
+
+---
+
+## 📂 Project Structure
+
+```
+AzureExams_simulator/
+├── .github/workflows/     # Auto-deploy to GitHub Pages
+├── src/
+│   ├── config/            # Exam registry — add new certifications here
+│   ├── data/
+│   │   ├── banks/         # Question banks (ai900.js, az900.js, ...)
+│   │   └── examRepository.js
+│   ├── logic/             # Pure functions: grading, shuffle, time
+│   ├── hooks/             # useExamSession, useCountdown
+│   └── components/
+│       ├── screens/       # Select · Welcome · Exam · Overview · Results
+│       ├── exam/          # TopBar, NavGrid, question renderers
+│       ├── review/        # Post-exam answer review
+│       └── common/        # ScoreRing, ConfirmModal, ...
+└── index.html
+```
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+git clone https://github.com/9llmy/AzureExams_simulator.git
+cd AzureExams_simulator
 npm install
-npm run dev      # development server at http://localhost:5173
-npm run build    # production build to dist/
-npm run preview  # serve the production build locally
+npm run dev      # → http://localhost:5173
 ```
 
-Open the folder in **VS Code** (recommended extensions will be suggested
-automatically) or in **Visual Studio 2022** via *File → Open → Folder*.
-This is a plain Vite project — no solution file is required.
+Production build: `npm run build` (output in `dist/`).
 
-## Architecture
+---
 
-```
-src/
-├── config/        Exam definitions (the extension point for new certs)
-├── data/          Data-access layer: question banks + repository
-├── logic/         Pure business logic: grading, shuffle, time (no React)
-├── hooks/         Stateful logic: exam session + countdown timer
-└── components/    Presentational UI: screens, exam widgets, review cards
-```
+## ➕ Add a New Certification
 
-Dependency direction: `components → hooks → data/logic → config`.
-Components never touch banks directly; everything flows through
-`data/examRepository.js`, so moving questions to an API or database later
-means changing only that one module.
+1. Create `src/data/banks/dp900.js` exporting a question array — three shapes are supported:
+   - `single` — radio buttons, `correct: [index]`
+   - `multi` — checkboxes, `pick: N`, `correct: [i, j, ...]`
+   - `matrix` — Yes/No statements, `matrixAnswers` (`0 = Yes, 1 = No`)
+2. Register it with one entry in `src/config/examRegistry.js`.
 
-## Add a certification (e.g. DP-900)
+The exam picker, timer, grading, and dashboard adapt automatically. Banks smaller than the target question count run in **preview mode**.
 
-1. Create `src/data/banks/dp900.js` exporting a question array. Three
-   question shapes are supported (see any existing bank):
-   - `single`  — radio buttons, `correct: [index]`
-   - `multi`   — checkboxes, `pick: N`, `correct: [i, j, ...]`
-   - `matrix`  — Yes/No statements, `matrixAnswers` with `0 = Yes, 1 = No`
-2. Add one entry to the `EXAMS` array in `src/config/examRegistry.js`.
+---
 
-If the bank is smaller than the exam's `questionCount`, the simulator runs
-in preview mode with every available question and labels it as such.
+## 📜 License
 
-## Push to GitHub
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
-This folder already contains an initialized git repository with an initial
-commit. To publish it:
+---
 
-```bash
-# 1. Create an empty repository on github.com (no README/license), then:
-git remote add origin https://github.com/<your-username>/<repo-name>.git
-git push -u origin main
-```
+<div align="center">
 
-Optional: make the initial commit yours before pushing:
+**Made with ☁️ by [Suliman Saleh (9llmy)](https://github.com/9llmy)**
 
-```bash
-git config user.name  "Your Name"
-git config user.email "you@example.com"
-git commit --amend --reset-author --no-edit
-```
+[📦 Repository](https://github.com/9llmy/AzureExams_simulator) • [💼 LinkedIn](https://www.linkedin.com/in/9llmy) • [🎓 Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/)
 
-## Deploy
-
-This is a fully static SPA (no backend), so any static host works.
-
-| Platform | Effort | Notes |
-|---|---|---|
-| **GitHub Pages** | Zero — workflow included | Push to `main`, then enable *Settings → Pages → Source: GitHub Actions*. The included `.github/workflows/deploy-pages.yml` builds and publishes automatically. |
-| **Vercel** | ~2 minutes | Import the GitHub repo at vercel.com; Vite is auto-detected. Free hobby tier, preview deployments per branch. |
-| **Netlify** | ~2 minutes | Same flow; build command `npm run build`, publish directory `dist`. |
-| **Azure Static Web Apps** | ~5 minutes | Thematically perfect for this project. Create a Static Web App in the Azure portal, connect the GitHub repo (app location `/`, output `dist`) — Azure adds its own workflow. Free tier available. |
-
-## Scoring
-
-A question counts as correct only when fully correct (exact multi-select
-set, every matrix statement), mirroring Microsoft's item scoring. Scores
-scale to 1000; passing is `passPercent` (700/1000 by default).
+</div>
