@@ -24,7 +24,7 @@
 
 Azure Exams Simulator is a single-page application that recreates the real Microsoft certification testing experience: a countdown timer, a question navigator with flagging, strict item scoring, and a full performance dashboard with per-question explanations.
 
-It ships with a **complete AI-900 bank (over 100 verified questions)** and an **AZ-900 preview bank**, and its plugin architecture means any Azure certification — DP-900, SC-900, AZ-104 — can be added with **one bank file and one registry entry**. No engine changes required.
+It ships with a **complete AI-900 bank (over 100 verified questions)** and a **complete AZ-900 bank (485 questions)**, and its plugin architecture means any Azure certification — DP-900, SC-900, AZ-104 — can be added with **one bank file and one registry entry**. No engine changes required.
 
 ---
 
@@ -46,12 +46,34 @@ It ships with a **complete AI-900 bank (over 100 verified questions)** and an **
 
 | Metric | Value |
 | --- | --- |
-| 🎓 Certifications | **2** (AI-900 full · AZ-900 preview) |
-| ❓ Questions in Banks | **131** |
+| 🎓 Certifications | **2** (AI-900 full · AZ-900 full) |
+| ❓ Questions in Banks | **596** (AI-900: 111 · AZ-900: 485) |
 | 🧩 Question Types | **3** |
-| 📚 AI-900 Skill Domains | **5** |
+| 📚 Skill Domains | **AI-900: 5 · AZ-900: 3** |
 | ⏱️ AI-900 Exam | **60 questions / 80 min** |
+| ⏱️ AZ-900 Exam | **40–50 questions / 45 min** |
 | 🏆 Passing Score | **700 / 1000** |
+
+---
+
+## 🎓 Certification Banks
+
+| Exam | Questions | Status | Skill Domains |
+| --- | --- | --- | --- |
+| **AI-900** — Azure AI Fundamentals | 111 | ✅ Full | 5 |
+| **AZ-900** — Azure Fundamentals | 485 | ✅ Full | 3 |
+
+### AZ-900 domain coverage
+
+The AZ-900 bank spans all three official skill domains. Distribution reflects the source material and can be sampled per-domain by the engine to build balanced mock exams.
+
+| Domain | Questions | Share | Official exam weighting |
+| --- | --- | --- | --- |
+| Cloud Concepts | 56 | 11.5% | 25–30% |
+| Azure Architecture & Services | 283 | 58.4% | 35–40% |
+| Management & Governance | 146 | 30.1% | 30–35% |
+
+> The imported AZ-900 bank skews toward Architecture & Services. Availability-zone / region / core-component questions legitimately fall under that domain per the AZ-900 skills outline, so this reflects the source rather than a mislabel. Per-question explanations for AZ-900 are being populated progressively.
 
 ---
 
@@ -126,10 +148,22 @@ Production build: `npm run build` (output in `dist/`).
 
 ## ➕ Add a New Certification
 
-1. Create `src/data/banks/dp900.js` exporting a question array — three shapes are supported:
-   - `single` — radio buttons, `correct: [index]`
-   - `multi` — checkboxes, `pick: N`, `correct: [i, j, ...]`
-   - `matrix` — Yes/No statements, `matrixAnswers` (`0 = Yes, 1 = No`)
+1. Create `src/data/banks/dp900.js` exporting a question array. Three question shapes are supported:
+
+   ```js
+   // single → radio buttons; one correct answer
+   { id: 1, domain: "Cloud Concepts", type: "single",
+     q: "...", options: ["Yes", "No"], correct: [0], explanation: "..." }
+
+   // multi → checkboxes; must pick exactly `pick` answers
+   { id: 2, domain: "Azure Architecture and Services", type: "multi", pick: 2,
+     q: "...", options: ["A", "B", "C", "D"], correct: [0, 1], explanation: "..." }
+
+   // matrix → grouped Yes/No statements (0 = Yes, 1 = No)
+   { id: 3, domain: "Management and Governance", type: "matrix",
+     statements: ["Statement 1", "Statement 2"], matrixAnswers: [0, 1], explanation: "..." }
+   ```
+
 2. Register it with one entry in `src/config/examRegistry.js`.
 
 The exam picker, timer, grading, and dashboard adapt automatically. Banks smaller than the target question count run in **preview mode**.
