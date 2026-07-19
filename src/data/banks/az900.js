@@ -106,7 +106,8 @@ export const AZ900_BANK = [
   {
     id: 12,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "Which of the following customers are eligible to use Azure Government to develop a cloud solution? Choose 2 answers from the options given below.",
     options: ["United states government Entity", "A United states government contractor", "A European government Entity", "A European government contractor"],
     correct: [0, 1],
@@ -358,7 +359,8 @@ export const AZ900_BANK = [
   {
     id: 40,
     domain: "Management and Governance",
-    type: "multiple",
+    type: "multi",
+    pick: 3,
     q: "A support engineer currently has a computer that runs Ubuntu. Which of the following Azure Management tools could be run from this computer?",
     options: ["Azure CLI", "Azure PowerShell", "The Azure Portal"],
     correct: [0, 1, 2],
@@ -574,7 +576,8 @@ export const AZ900_BANK = [
   {
     id: 64,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "Your company needs to have a data store in Azure. Below are the key requirements for the data store: The data store should be capable of storing 10TB of data. The data would be accessed infrequently. The data would need to be visualised using PowerBI. Which of the following services could you use for this requirement? Choose 2 answers from the options given below.",
     options: ["Azure SQL database", "Azure Synapse Analytics", "Azure Data Lake", "Azure Cosmos DB"],
     correct: [1, 2],
@@ -601,7 +604,8 @@ export const AZ900_BANK = [
   {
     id: 67,
     domain: "Cloud Concepts",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "What are two key characteristics of the public cloud?",
     options: ["Dedicated hardware resources", "Shared infrastructure", "Pay-as-you-go model", "On-premises deployment", "Limited geographic availability"],
     correct: [1, 2],
@@ -700,7 +704,8 @@ export const AZ900_BANK = [
   {
     id: 78,
     domain: "Management and Governance",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "A support engineer plans to perform several Azure management tasks by using the Azure CLI. You install the CLI on a computer. You need to tell the support engineer which tools to use to run the CLI. Which two tools should you instruct the support engineer to use?",
     options: ["Command Prompt", "Azure Resource Explorer", "Windows PowerShell", "Windows Defender Firewall", "Network and Sharing Center"],
     correct: [0, 2],
@@ -709,7 +714,8 @@ export const AZ900_BANK = [
   {
     id: 79,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "You plan to store 20 TB of data in Azure. The data will be accessed infrequently and visualized by using Microsoft Power BI. You need to recommend a storage solution for the data Which two solutions should you recommend?",
     options: ["Azure Data Lake", "Azure Cosmos DB", "Azure Synapse Analytics", "Azure SQL Database", "Azure Database for PostgreSQL"],
     correct: [0, 2],
@@ -763,7 +769,8 @@ export const AZ900_BANK = [
   {
     id: 85,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "You have an Azure environment that contains multiple Azure virtual machines. You plan to implement a solution that enables the client computers on your on-premises network to communicate to the Azure virtual machines. You need to recommend which Azure resources must be created for the planned solution. Which two Azure resources should you include in the recommendation?",
     options: ["A virtual network gateway", "A load balancer", "An application gateway", "A virtual network", "A gateway subnet"],
     correct: [0, 4],
@@ -826,7 +833,8 @@ export const AZ900_BANK = [
   {
     id: 92,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "Your company plans to deploy several million sensors that will upload data to Azure. You need to identify which Azure resources must be created to support the planned solution. Which two Azure resources should you identify?",
     options: ["Azure Data Lake", "Azure Queue storage", "Azure File Storage", "Azure IoT Hub", "Azure Notification Hubs"],
     correct: [0, 3],
@@ -835,7 +843,8 @@ export const AZ900_BANK = [
   {
     id: 93,
     domain: "Management and Governance",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "You have an Azure web app. You need to manage the settings of the web app from an iPhone. What are two Azure management tools that you can use?",
     options: ["Azure CLI", "The Azure portal", "Azure Cloud Shell", "Windows PowerShell", "Azure Storage Explorer"],
     correct: [1, 2],
@@ -988,7 +997,8 @@ export const AZ900_BANK = [
   {
     id: 110,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "Which two types of customers are eligible to use Azure Government to develop a cloud solution?",
     options: ["A Canadian government contractor", "A European government contractor", "A United States government entity", "A United States government contractor", "A European government entity"],
     correct: [2, 3],
@@ -1114,7 +1124,8 @@ export const AZ900_BANK = [
   {
     id: 124,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "Your company plans to migrate to Azure. The company has several departments. All the Azure resources used by each department will be managed by a department administrator. What are two possible techniques to segment Azure for the departments?",
     options: ["Multiple subscriptions", "Multiple Microsoft Entra ID directories", "Multiple regions", "Multiple resource groups"],
     correct: [0, 3],
@@ -1258,7 +1269,8 @@ export const AZ900_BANK = [
   {
     id: 140,
     domain: "Cloud Concepts",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "What are two characteristics of the public cloud?",
     options: ["Dedicated hardware", "Unsecured connections", "Limited storage", "Metered pricing", "Self-service management"],
     correct: [3, 4],
@@ -2392,7 +2404,8 @@ export const AZ900_BANK = [
   {
     id: 266,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "You plan to deploy several Azure virtual machines. You need to ensure that the services running on the virtual machines remain available if a single data center fails. What are two possible solutions?",
     options: ["Deploy the virtual machines to two or more availability zones.", "Deploy the virtual machines to two or more resource groups", "Deploy the virtual machines to a scale set", "Deploy the virtual machines to two or more regions"],
     correct: [0, 3],
@@ -2518,7 +2531,8 @@ export const AZ900_BANK = [
   {
     id: 280,
     domain: "Management and Governance",
-    type: "multiple",
+    type: "multi",
+    pick: 3,
     q: "You have an Azure environment. You need to create a new Azure virtual machine from a tablet that runs the Android operating system. What are three possible solutions?",
     options: ["Use Bash in Azure Cloud Shell", "Use PowerShell in Azure Cloud Shell", "Use the PowerApps portal", "Use the Security & Compliance admin center", "Use the Azure portal"],
     correct: [0, 1, 4],
@@ -2590,7 +2604,8 @@ export const AZ900_BANK = [
   {
     id: 288,
     domain: "Management and Governance",
-    type: "multiple",
+    type: "multi",
+    pick: 3,
     q: "An Azure administrator plans to run a PowerShell script that creates Azure resources. You need to recommend which computer configuration to use to run the script. Which three computers can run the script?",
     options: ["A computer that runs macOS and has PowerShell Core 6.0 installed.", "A computer that runs Windows 10 and has the Azure PowerShell module installed.", "A computer that runs Linux and has the Azure PowerShell module installed.", "A computer that runs Linux and has the Azure CLI tools installed.", "A computer that runs Chrome OS and uses Azure Cloud Shell"],
     correct: [0, 1, 4],
@@ -2671,7 +2686,8 @@ export const AZ900_BANK = [
   {
     id: 297,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "Your Azure environment contains multiple Azure virtual machines. You need to ensure that a virtual machine named VM1 is accessible from the Internet over HTTP. What are two possible solutions?",
     options: ["Modify an Azure Traffic Manager profile", "Modify a Network Security Group (NSG)", "Modify a DDoS protection plan", "Modify an Azure firewall"],
     correct: [1, 3],
@@ -4336,7 +4352,8 @@ export const AZ900_BANK = [
   {
     id: 482,
     domain: "Azure Architecture and Services",
-    type: "multiple",
+    type: "multi",
+    pick: 2,
     q: "Your company has an on-premises network that contains multiple servers. The company plans to reduce the following administrative responsibilities of network administrators: Backing up application data. Replacing failed server hardware. Managing physical server security. Updating server operating systems. Managing permissions to shared documents. The company plans to migrate several servers to Azure virtual machines. You need to identify which administrative responsibilities will be eliminated after the planned migration. Which two responsibilities should you identify?",
     options: ["Replacing failed server hardware", "Backing up application data", "Managing physical server security", "Updating server operating systems", "Managing permissions to shared documents"],
     correct: [0, 2],
